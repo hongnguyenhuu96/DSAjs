@@ -1,0 +1,101 @@
+process is a program running on the system
+job task and process may be used interchangebly
+forexample:
+open new tab in chrome browser will create a new process
+but firefox browser use one process to manage all tabs
+
+
+process structure: 4 main parts
+stack + heap
+data (global variable)
+text (code)
+program counter (instruction pointer)
+
+process structure is different among oses
+
+
+
+process control block (pcb)
+process state
+program counter
+CPU registers
+CPU scheduling information
+Memory management information
+accounting information
+IO status informaton
+
+PCB are different among OSes
+
+
+process states:
+	new: new process is initiated
+	ready: process just waits for its turrn to run
+	running: process instructions are being run
+	waiting: process is waiting for a certain resource or event
+	terminated: process completes
+
+
+process context switch : CPU stops current process and runs another one
+	save the state of current process (save in to PCB0)
+	put it in to the ready queue
+	pick the target process
+	restore the state of the target process (reload state from PCB1)
+	run the target process
+
+
+system process and user processes
+
+
+
+
+deadlock
+set of blocked process, each holding a resource and waiting to accquire the a resource held another process in the set
+and there must be a cicular wait in this set
+for example: P1 waiting for resource held by p2 to complete, p2 waiting for resource that held by p3 to complete and p3 waiting for resource that held by p1 to complete
+nopreemtion: only process has its right to release it holding resources
+
+process 1
+wait(p)
+wait(s)
+
+modify resource x
+
+signal(p)
+signal(s)
+
+process 2
+wait(s)
+wait(p)
+
+modify resource x
+
+signal(p)
+signal(s)
+
+
+->->->->|
+^       |
+|		|	
+|		\/
+|<-<-<-<------
+
+ safe state is the running sequence (order) of processes that ensures the system does not enter a deadlock.
+ the max request resource to finish Pi is less than the avaiable resource plus with the resource that released by Pj with j < i
+
+use Resource-Allocation Graph to detect deadlock if there is one type of instance
+if the resource have many type of intances, use banker alogorithm
+
+banker alogorithm
+
+tim process i ma no can it resource hon avaiable resource hien tai de hoan thanh
+sau khi hoan thanh cap nhat avaiable resource = avaiable resource cu + resource ma process i sau khi hoan thanh nha ra
+tiep tuc tim process i khac
+
+neu den cuoi chuong trinh ma tat ca cac process i neu finised thi la safe state
+con neu khong thi unsafe state
+
+
+to recovering from deadlook:
+	abort all processes
+	abort each process involved in the deadlock until the deadlock disappears
+	the resources a process needs to complete can be  a criteria for selecting a process to abort
