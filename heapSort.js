@@ -7,13 +7,11 @@ a.forEach(value => result += (value + " "));
 console.log(result);
 
 function heapSort(a){
-	for(i = a.length - 1; i >= 0; i--){
+	for(i = Math.floor(a.length/2) - 1; i >= 0; i--){
 		heapify(a, a.length, i);
 	}
 	for(i = a.length - 1; i >= 0; i--){
-		let temp = a[i];
-		a[i] = a[0];
-		a[0] = temp;
+		[a[i], a[0]] = [a[0], a[i]]
 		heapify(a, i, 0);
 	}
 }
@@ -26,9 +24,7 @@ function heapify(a, n, i){
 	if(left < n && a[left] > a[largest]) largest = left;
 	if(right < n && a[right] > a[largest]) largest = right;
 	if(i != largest){
-		let temp = a[largest];
-		a[largest] = a[i];
-		a[i] = temp;
+		[a[i], a[largest]] = [a[largest], a[i]]
 		heapify(a, n, largest);
 	}
 }
